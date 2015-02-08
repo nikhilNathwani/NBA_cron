@@ -82,8 +82,16 @@ def reformatGametime(timeStr):
 	hhmm,isAfternoon= time.split()  
 	#break hhmm into hour and minute. I str(int()) stuff to remove leading 0's
 	hour,minute= [str(int(x)) for x in hhmm.split(':')] 
-	#switch hour to military time, which is necessary for crontab
+	#switch hour to military time (which is necessary for crontab),
+	#and adjust day as necessary 
 	hour= str(int(hour)+delay+12) if isAfternoon else str(int(hour+delay))
+	if int(hour)>23:
+		hour= str(int(hour)%24)
+		day= str(int(day)+1)
+		if int(day)>monthToNumDays[int(month)]:
+			day= str(int(day)%monthToNumDays[int(month)])
+			month= str((int(month)+1)%12+1)
+
 	#combine everything into crontab format
-	return minute+' '+hour+' '+str(day)+' '+str(month)+' * '
+	return minute+' '+hour+' '+ day +' '+ month+' * '
 
