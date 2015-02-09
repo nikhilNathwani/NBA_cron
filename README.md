@@ -24,12 +24,13 @@ crontab nba_crontab.txt
 ```
 
 When the script is complete, the specified script will be scheduled to run 5 hours after each NBA game begins (a baked-in delay to allow for online data to update -- experimentation is needed to ensure that 5 hours is a good amount of time) for the entirety of the regular season (postseason games will be added to the crontab when playoff series schedules are released). 
+
 A couple of quick notes:
--All gametimes in the crontab are in Eastern Time
--Any file that is referred to in your script must be specified with its full path (a guideline required by cron for security reasons)
+- All gametimes in the crontab are in Eastern Time
+- Any file that is referred to in your script must be specified with its full path (a guideline required by cron for security reasons)
 
 
 ##Next steps
--Perform some experimentation to determine an appropriate amount of delay after each game before new data becomes available online.
--Add postseason games to crontab when playoff series schedules are released
--Programmatically scrape off-days (currently hard-coded) to enable scaling to future seasons
+- Perform some experimentation to determine an appropriate amount of delay after each game before new data becomes available online.
+- Add postseason games to crontab when playoff series schedules are released
+- Programmatically scrape off-days (currently hard-coded) to enable scaling to future seasons
