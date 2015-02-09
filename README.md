@@ -1,34 +1,35 @@
-NBA cron
+NBA_cron
 ==========
 
-Given a picture and a number *k*, this script outputs a version of your picture that only uses *k* colors. But it picks those *k* colors wisely (using the [k-Means Clustering](http://en.wikipedia.org/wiki/K-means_clustering) Algorithm) so as to preserve the original context of the image. You'd be amazed how much trendier you look with fewer colors. 
+This tool is a task scheduler that automatically runs scripts after each NBA game. For instance, if you're maintaining a database of NBA game data and have scripts to refresh your data from the web, NBA_cron will enable you to automatically have that script run after new data is made available online. 
+
+NBA_cron is backed by [cron](http://en.wikipedia.org/wiki/Cron), a time-based job scheduler for Unix-based/Unix-like systems (meaning users of this tool are required to have such a system). 
 
 ##How to run the script
-1) **Get the file** entitled kMeansColor.py (can be done by downloading the zip file of this repo on github)
+1) **Get the files**, which can be done by downloading the zip file of this repo on GitHub
 
-2) **Install dependencies**, of which there are two: [SciPy](http://www.scipy.org/install.html) and [PIL](http://www.pythonware.com/products/pil/#pil117) (Python Imaging Library). If you're a Mac-user you can install these by simply entering the following into the Terminal (you'll be prompted for your computer password):
+2) **Run the code** by invoking the bash script, i.e. by entering the following into your terminal:
 ```
-sudo port install py27-scipy
-sudo port install py27-pil
+./NBAcron.sh [script to schedule]
 ```
-
-3) **Run the code** by entering the following into your terminal:
+If you get some sort of "Permission denied" message, try entering the following before running the above bash script:
 ```
-python2.7 kMeansPainting.py [filepath to picture] [number k]
+sudo chmod +x
 ```
 
-Note that your terminal needs to be in the folder containing kMeansPainting.py; if this is not the case, then enter `cd [path to folder containing kMeansPainting.py]` before running the above line of code. 
+If you want to run the code directly instead of using the bash script, then enter the following into you terminal:
+```
+python NBAcron.py [script to schedule]
+crontab nba_crontab.txt
+```
 
-When the script is complete, a new version of your image will appear containing only the most identifying *k* colors (it will NOT overwrite your original image). Most jpg/png files take ~2 seconds to complete, while high-resolution photos may take up to a minute (pending further testing).
+When the script is complete, the specified script will be scheduled to run 5 hours after each NBA game begins (a baked-in delay to allow for online data to update -- experimentation is needed to ensure that 5 hours is a good amount of time) for the entirety of the regular season (postseason games will be added to the crontab when playoff series schedules are released). 
+A couple of quick notes:
+-All gametimes in the crontab are in Eastern Time
+-Any file that is referred to in your script must be specified with its full path (a guideline required by cron for security reasons)
 
-4) **Report errors** that you encounter by letting me know (email: njn27@cornell.edu, twitter: @nikhilhyphen). I hacked this together quickly and haven't done much error handling or testing for corner cases, so if you let me know if run into issues I can update the code accordingly!
 
-
-##Example
-###Original vs. k=2:
-![barca](http://i.imgur.com/GWUVRmB.jpg) ![barca2](http://i.imgur.com/m3yCu4n.png)
-
-README
-
-all files need to be full path
-all gametimes are in Eastern Time
+##Next steps
+-Perform some experimentation to determine an appropriate amount of delay after each game before new data becomes available online.
+-Add postseason games to crontab when playoff series schedules are released
+-Programmatically scrape off-days (currently hard-coded) to enable scaling to future seasons
