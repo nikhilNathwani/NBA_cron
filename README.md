@@ -3,7 +3,7 @@ NBA Cron
 
 This tool is a task scheduler that automatically runs scripts after each NBA game in the 2014-15 season. For instance, if you're maintaining a database of NBA game data and have scripts to refresh your data from the web, NBA Cron will enable you to automatically have that script run after new data is made available online. 
 
-The story behind how I built this tool can be found [here](http://nikhilnathwani.quora.com/How-I-made-NBA-Cron)
+The story behind how I built this tool can be found [here](http://nikhilnathwani.quora.com/How-I-made-NBA-Cron).
 
 NBA Cron is backed by [cron](http://en.wikipedia.org/wiki/Cron), a time-based job scheduler for Unix-based/Unix-like systems (meaning users of this tool are required to have such a system). 
 
