@@ -1,7 +1,7 @@
 NBA_cron
 ==========
 
-This tool is a task scheduler that automatically runs scripts after each NBA game. For instance, if you're maintaining a database of NBA game data and have scripts to refresh your data from the web, NBA_cron will enable you to automatically have that script run after new data is made available online. 
+This tool is a task scheduler that automatically runs scripts after each NBA game in the 2014-15 season. For instance, if you're maintaining a database of NBA game data and have scripts to refresh your data from the web, NBA_cron will enable you to automatically have that script run after new data is made available online. 
 
 NBA_cron is backed by [cron](http://en.wikipedia.org/wiki/Cron), a time-based job scheduler for Unix-based/Unix-like systems (meaning users of this tool are required to have such a system). 
 
@@ -28,6 +28,19 @@ When the tool's finished executing, the specified script will be scheduled to ru
 A couple of quick notes:
 - All gametimes in the crontab are in Eastern Time
 - Any file that is referred to in your script must be specified with its full path (a guideline required by cron for security reasons)
+
+
+##Folder structure
+- **gametimeData.txt** is a file containing NBA game times throughout the 2014-15 season. The format of each row is:
+
+```
+[hh:mm] [am/pm] [day] [month]
+```
+- **NBAcron.py** is the Python script that uses the data in gametimeData.txt to generate the crontab (nba_crontab.txt).
+- **nba_crontab.txt** is the crontab that specifies to the system's cron scheduler when to perform tasks.
+- **NBAcron.sh** is a handy bash script that runs NBAcron.py and then initializes the crontab all in one go.
+- **scrape.py** contains the Python scripts that were used in scraping NBA game time data from NBA.com, and is a dependency of NBAcron.py.
+- **util.py** contains some general-purpose Python functions and is a dependency of NBAcron.py.
 
 
 ##Next steps
