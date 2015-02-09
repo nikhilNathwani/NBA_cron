@@ -23,7 +23,7 @@ python NBAcron.py [script to schedule]
 crontab nba_crontab.txt
 ```
 
-When the script is complete, the specified script will be scheduled to run 5 hours after each NBA game begins (a baked-in delay to allow for online data to update -- experimentation is needed to ensure that 5 hours is a good amount of time) for the entirety of the regular season (postseason games will be added to the crontab when playoff series schedules are released). 
+When the tool's finished executing, the specified script will be scheduled to run 5 hours after each NBA game begins (a baked-in delay to allow for online data to update -- experimentation is needed to ensure that 5 hours is a good amount of time) for the entirety of the regular season (postseason games will be added to the crontab when playoff series schedules are released). 
 
 A couple of quick notes:
 - All gametimes in the crontab are in Eastern Time
